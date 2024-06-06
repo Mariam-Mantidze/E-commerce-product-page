@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
 export default function Main() {
+  const imageIndexes = [1, 2, 3, 4];
   return (
     <MainComponent>
       <div className="img-container">
-        <img
-          className="main-img"
-          src="images/image-product-1.jpg"
-          alt="product image"
-        />
+        {imageIndexes.map((imageIndex, index) => (
+          <img
+            key={index}
+            className="main-img"
+            src={`images/image-product-${imageIndex}.jpg`}
+            alt="product image"
+          />
+        ))}
+
         <div className="arrow-circle circle-right">
           <img
             className="arrow right"
