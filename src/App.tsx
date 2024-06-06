@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { createContext } from "react";
-import Header from "./components/Header.tsx";
+import Header from "./components/header/Header.tsx";
 import GlobalStyles from "./styles/Globalstyles.ts";
 import "./App.css";
 import styled from "styled-components";
+import Main from "./components/main/Main.tsx";
 
 export const productContext = createContext({});
 
@@ -27,6 +28,7 @@ function App() {
       <GlobalStyles />
       <Header />
       {burgerOpen && <Overlay />}
+      <Main />
     </productContext.Provider>
   );
 }
@@ -41,5 +43,6 @@ const Overlay = styled.div`
   height: 100vh;
   width: 100%;
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;

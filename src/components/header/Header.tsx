@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Burger from "./Burger";
 import { useContext } from "react";
-import { productContext } from "../App";
+import { productContext } from "../../App";
 
 export default function Header() {
   const { burgerOpen, setBurgerOpen } = useContext(productContext);
@@ -31,7 +31,7 @@ export default function Header() {
   );
 }
 
-const HeaderComponent = styled.div`
+const HeaderComponent = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;

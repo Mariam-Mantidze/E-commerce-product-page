@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { productContext } from "../App";
+import { productContext } from "../../App";
 import styled from "styled-components";
 
 export default function Burger() {
