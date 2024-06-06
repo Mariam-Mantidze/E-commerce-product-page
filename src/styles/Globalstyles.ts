@@ -20,3 +20,5 @@ button, span {
     font-family: "Kumbh Sans", sans-serif;
 }
 `;
+
+export default GlobalStyles;
