@@ -1,37 +1,41 @@
 import styled from "styled-components";
 import { useState } from "react";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
 
 export default function Main() {
-  const imageIndexes = [1, 2, 3, 4];
+  const slides = [1, 2, 3, 4];
   const [currentIndex, setCurrentIndex] = useState(1);
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex > 1 ? prevIndex - 1 : imageIndexes.length - 1
+      prevIndex > 1 ? prevIndex - 1 : slides.length - 1
     );
   };
 
   const handleNextClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex > imageIndexes.length - 1 ? 1 : prevIndex + 1
+      prevIndex > slides.length - 1 ? 1 : prevIndex + 1
     );
   };
 
   return (
     <MainComponent>
       <div className="img-container">
-        {imageIndexes.map((imageIndex, index) => (
-          <img
-            key={index}
-            className={`main-img ${
-              imageIndex === currentIndex ? "active" : ""
-            }`}
-            src={`images/image-product-${imageIndex}.jpg`}
-            alt="product image"
-          />
-        ))}
+        <Slider>
+          {slides.map((imageIndex, index) => (
+            <img
+              key={index}
+              className={`main-img ${
+                imageIndex === currentIndex ? "active" : ""
+              }`}
+              src={`images/image-product-${imageIndex}.jpg`}
+              alt="product image"
+            />
+          ))}
+        </Slider>
 
-        <div className="arrow-circle circle-right">
+        <div className="arrow-circle circle-right custom-prev-arrow">
           <img
             onClick={handlePrevClick}
             className="arrow right"
@@ -40,7 +44,7 @@ export default function Main() {
           />
         </div>
 
-        <div className="arrow-circle circle-left">
+        <div className="arrow-circle circle-left custom-next-arrow">
           <img
             onClick={handleNextClick}
             className="arrow left"
@@ -55,10 +59,21 @@ export default function Main() {
 
 const MainComponent = styled.main`
   & > .img-container {
+    transition: transform 0.5s ease;
+
     & > .main-img {
       display: none;
       position: relative;
       width: 100%;
+      /* transition: transform 0.2s ease-in-out;
+      transform: translateX(0); */
+    }
+
+    .slider a.previousButton,
+    .slider a.nextButton {
+      top: 51%;
+      /* left: 10%; */
+      opacity: 0;
     }
 
     & > .active {
@@ -79,12 +94,12 @@ const MainComponent = styled.main`
 
     & .circle-left {
       right: 16px;
-      top: 25%;
+      top: 250px;
     }
 
     & .circle-right {
       left: 16px;
-      top: 25%;
+      top: 250px;
     }
   }
 `;
