@@ -1,12 +1,36 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { productContext } from "../../App";
 
 export default function Buttons() {
+  const { count, setCount } = useContext(productContext);
+
+  const onPlusClick = () => {
+    setCount((prevCount: number) => prevCount + 1);
+  };
+
+  const onMinusClick = () => {
+    if (count > 0) {
+      setCount((prevCount: number) => prevCount - 1);
+    }
+  };
+
   return (
     <ButtonContainer>
       <button id="quantity">
-        <img src="images/icon-minus.svg" alt="minus icon" />
-        {0}
-        <img src="images/icon-plus.svg" alt="plus icon" />
+        <img
+          onClick={onMinusClick}
+          id="minus"
+          src="images/icon-minus.svg"
+          alt="minus icon"
+        />
+        {count}
+        <img
+          onClick={onPlusClick}
+          id="plus"
+          src="images/icon-plus.svg"
+          alt="plus icon"
+        />
       </button>
       <button id="cart">
         <svg
@@ -43,18 +67,55 @@ const ButtonContainer = styled.div`
   & > #quantity {
     justify-content: space-around;
     background: rgba(246, 248, 253, 1);
-
     font-size: 16px;
     font-weight: 700;
     line-height: 19.84px;
+    position: relative;
+
+    & > img {
+      position: absolute;
+      top: 24.14px;
+      cursor: pointer;
+    }
+    & > #plus {
+      right: 23.14px;
+    }
+
+    & > #minus {
+      left: 23.14px;
+      top: 30px;
+    }
   }
+
+  /* & > #quantity::before {
+    content: "";
+    background-image: url("images/icon-minus.svg");
+    display: inline-block;
+    background-size: cover;
+    width: 12px;
+    height: 3px;
+    position: absolute;
+    left: 23.14px;
+    cursor: pointer;
+  } */
+
+  /* & > #quantity::after {
+    content: "";
+    background-image: url("images/icon-plus.svg");
+    display: inline-block;
+    background-size: cover;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    right: 23.14px;
+    cursor: pointer;
+  } */
 
   & > #cart {
     justify-content: center;
     gap: 10px;
     background: rgba(255, 126, 27, 1);
     box-shadow: 0px 20px 50px -20px rgba(255, 126, 27, 1);
-
     font-size: 16px;
     font-weight: 700;
     line-height: 19.84px;

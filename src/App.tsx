@@ -20,11 +20,18 @@ export const productContext = createContext({});
 */
 
 function App() {
+  // state for managing burger menu pop
   const [burgerOpen, setBurgerOpen] = useState(false);
+
+  // category array for mapping
   const categories = ["Collections", "Men", "Women", "About", "Contact"];
 
+  // state for managing product count in the cart
+  const [count, setCount] = useState(0);
+
   return (
-    <productContext.Provider value={{ categories, burgerOpen, setBurgerOpen }}>
+    <productContext.Provider
+      value={{ categories, burgerOpen, setBurgerOpen, count, setCount }}>
       <GlobalStyles />
       <Header />
       {burgerOpen && <Overlay />}
