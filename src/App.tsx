@@ -8,17 +8,6 @@ import Main from "./components/main/Main.tsx";
 
 export const productContext = createContext({});
 
-/* ჰედერი - ცალკე კომპონენტი
-ბურგერ მენიუს შიგთავსი - ცალკე კომპონენტი
-ნავიგაციის ბარი - ცალკე კომპონენტი დეკსტოპზე
-იუზერის ფოტო და  ქართი ერთად - ცალკე კომპ.
-
-მეინში - ფოტო და დანარჩენი ყველაფერი sneaker company-dan add to cart-ამდე, ცალ-ცალკე დივებში.
-ფასის ველი მთლიანად ცალკე დივში, პროცენტი და ამჟამინდელი ფასი ცალკე - გადახაზილი ფასი ცალკე.
-ბათონები - ერთ დივში
-
-*/
-
 function App() {
   // state for managing burger menu pop
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -29,9 +18,20 @@ function App() {
   // state for managing product count in the cart
   const [count, setCount] = useState(0);
 
+  // state for cart
+  const [cart, setCart] = useState(0);
+
   return (
     <productContext.Provider
-      value={{ categories, burgerOpen, setBurgerOpen, count, setCount }}>
+      value={{
+        categories,
+        burgerOpen,
+        setBurgerOpen,
+        count,
+        setCount,
+        cart,
+        setCart,
+      }}>
       <GlobalStyles />
       <Header />
       {burgerOpen && <Overlay />}

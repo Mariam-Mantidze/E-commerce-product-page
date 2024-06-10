@@ -39,55 +39,55 @@ export default function CarouselSlider() {
 }
 
 const ImageContainer = styled.div`
+  & .main-img {
+    object-fit: cover;
+    object-position: center;
+  }
 
+  & .slider {
+    height: 300px;
+  }
 
-    & > .main-img {
-      display: none;
-      position: relative;
-      width: 100%;
-    }
+  .slider a.previousButton,
+  .slider a.nextButton {
+    top: 51%;
+    opacity: 0;
+  }
+  .slide.animateIn,
+  .slide.animateOut {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+  }
 
-    .slider a.previousButton,
-    .slider a.nextButton {
-      top: 51%;
-      opacity: 0;
-    }
-    .slide.animateIn,
-    .slide.animateOut {
-      -webkit-transition: all 1s ease;
-      transition: all 1s ease;
-    }
+  .slide.animateIn.previous,
+  .slide.animateIn.next {
+    left: 0;
+    visibility: visible;
+  }
 
-    .slide.animateIn.previous,
-    .slide.animateIn.next {
-      left: 0;
-      visibility: visible;
-    }
+  & > .active {
+    display: inline-block;
+  }
 
-    & > .active {
-      display: inline-block;
-    }
+  & > .arrow-circle {
+    position: absolute;
+    background: rgba(255, 255, 255, 1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
-    & > .arrow-circle {
-      position: absolute;
-      background: rgba(255, 255, 255, 1);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
+  & .circle-left {
+    right: 16px;
+    top: 202px;
+  }
 
-    & .circle-left {
-      right: 16px;
-      top: 250px;
-    }
-
-    & .circle-right {
-      left: 16px;
-      top: 250px;
-    }
+  & .circle-right {
+    left: 16px;
+    top: 202px;
   }
 `;

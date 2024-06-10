@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import Burger from "./Burger";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { productContext } from "../../App";
+import Cart from "./Cart";
 
 export default function Header() {
   const { burgerOpen, setBurgerOpen } = useContext(productContext);
+  const [cartOpen, setCartOpen] = useState(false);
+
   return (
     <HeaderComponent>
       <div className="logo-menu-div">
@@ -18,7 +21,12 @@ export default function Header() {
       </div>
 
       <div className="cart-user-div">
-        <img className="cart" src="/images/icon-cart.svg" alt="cart logo" />
+        <img
+          onClick={() => setCartOpen(!cartOpen)}
+          className="cart"
+          src="/images/icon-cart.svg"
+          alt="cart logo"
+        />
         <img
           className="user-avatar"
           src="/images/image-avatar.png"
@@ -27,6 +35,8 @@ export default function Header() {
       </div>
 
       {burgerOpen && <Burger />}
+      <Cart />
+      {/* {cartOpen && <Cart />} */}
     </HeaderComponent>
   );
 }
