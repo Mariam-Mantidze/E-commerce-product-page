@@ -8,11 +8,15 @@ export default function Header() {
   const { burgerOpen, setBurgerOpen } = useContext(productContext);
   const [cartOpen, setCartOpen] = useState(false);
 
+  const handleMenuClick = () => {
+    setBurgerOpen(true), setCartOpen(false);
+  };
+
   return (
     <HeaderComponent>
       <div className="logo-menu-div">
         <img
-          onClick={() => setBurgerOpen(true)}
+          onClick={handleMenuClick}
           className="menu"
           src="/images/icon-menu.svg"
           alt="burger menu icon"
@@ -35,8 +39,7 @@ export default function Header() {
       </div>
 
       {burgerOpen && <Burger />}
-      <Cart />
-      {/* {cartOpen && <Cart />} */}
+      {cartOpen && <Cart />}
     </HeaderComponent>
   );
 }

@@ -3,9 +3,8 @@ import { useContext } from "react";
 import { productContext } from "../../App";
 
 export default function FullCartDetail() {
-  const { count, setCount } = useContext(productContext);
-
-  const totalPrice = count * 125;
+  const { count, setCount, totalPrice, cart, setCart } =
+    useContext(productContext);
 
   return (
     <CartItemInfo>
@@ -19,12 +18,12 @@ export default function FullCartDetail() {
           />
           <div className="flex-group">
             <span>Fall Limited Edition Sneakers</span> <br />
-            <span>$125 x {count} </span>{" "}
-            <span id="total">{`$${totalPrice}`}</span>
+            <span>$125 x {cart.count} </span>{" "}
+            <span id="total">{`$${cart.price}`}</span>
           </div>
         </div>
         <img
-          //   onClick={() => setCount(0)}
+          onClick={() => setCart({})}
           style={{ cursor: "pointer" }}
           src="images/icon-delete.svg"
           alt="delete icon"

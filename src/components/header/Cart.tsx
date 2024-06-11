@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import FullCartDetail from "./FullCartDetail";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { productContext } from "../../App";
 
 export default function Cart() {
-  const { count } = useContext(productContext);
+  const { count, cart, setCart } = useContext(productContext);
 
   return (
     <CartElement>
       <h4>Cart</h4>
       <div className="divider"></div>
 
-      {count > 0 ? <FullCartDetail /> : <p>Your cart is empty</p>}
+      {Object.values(cart).length > 0 ? (
+        <FullCartDetail />
+      ) : (
+        <p>Your cart is empty</p>
+      )}
     </CartElement>
   );
 }

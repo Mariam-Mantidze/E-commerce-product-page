@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { productContext } from "../../App";
 
 export default function Buttons() {
-  const { count, setCount } = useContext(productContext);
+  const { count, setCount, cart, setCart, totalPrice } =
+    useContext(productContext);
 
   const onPlusClick = () => {
     setCount((prevCount: number) => prevCount + 1);
@@ -14,6 +15,14 @@ export default function Buttons() {
       setCount((prevCount: number) => prevCount - 1);
     }
   };
+
+  const addToCart = () => {
+    if (count > 0 && Object.keys(cart).length === 0) {
+      setCart({ price: totalPrice, count: count });
+    }
+  };
+
+  console.log(cart);
 
   return (
     <ButtonContainer>
@@ -32,7 +41,15 @@ export default function Buttons() {
           alt="plus icon"
         />
       </button>
-      <button id="cart">
+      <button
+        style={{
+          background:
+            count <= 0 &&
+            Object.keys(cart).length === 0 &&
+            "rgba(255, 171, 106, 1)",
+        }}
+        onClick={addToCart}
+        id="cart">
         <svg
           id="cart-icon"
           width="22"

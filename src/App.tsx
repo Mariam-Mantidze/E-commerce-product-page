@@ -18,8 +18,11 @@ function App() {
   // state for managing product count in the cart
   const [count, setCount] = useState(0);
 
-  // state for cart
-  const [cart, setCart] = useState(0);
+  // state for managing cart
+  const [cart, setCart] = useState({});
+
+  // total price
+  const totalPrice = count * 125;
 
   return (
     <productContext.Provider
@@ -31,6 +34,7 @@ function App() {
         setCount,
         cart,
         setCart,
+        totalPrice,
       }}>
       <GlobalStyles />
       <Header />
