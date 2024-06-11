@@ -1,13 +1,34 @@
 import styled from "styled-components";
 import FullCartDetail from "./FullCartDetail";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { productContext } from "../../App";
 
-export default function Cart() {
+export default function Cart({ setCartOpen, cartIconRef }) {
   const { count, cart, setCart } = useContext(productContext);
 
+  const cartRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        cartRef.current &&
+        !cartRef.current.contains(event.target as Node) &&
+        cartIconRef.current &&
+        !cartIconRef.current.contains(event.target as Node)
+      ) {
+        setCartOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <CartElement>
+    <CartElement ref={cartRef}>
       <h4>Cart</h4>
       <div className="divider"></div>
 

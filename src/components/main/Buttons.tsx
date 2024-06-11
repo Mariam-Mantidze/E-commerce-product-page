@@ -22,8 +22,6 @@ export default function Buttons() {
     }
   };
 
-  console.log(cart);
-
   return (
     <ButtonContainer>
       <button id="quantity">
@@ -104,31 +102,8 @@ const ButtonContainer = styled.div`
     }
   }
 
-  /* & > #quantity::before {
-    content: "";
-    background-image: url("images/icon-minus.svg");
-    display: inline-block;
-    background-size: cover;
-    width: 12px;
-    height: 3px;
-    position: absolute;
-    left: 23.14px;
-    cursor: pointer;
-  } */
-
-  /* & > #quantity::after {
-    content: "";
-    background-image: url("images/icon-plus.svg");
-    display: inline-block;
-    background-size: cover;
-    width: 13px;
-    height: 13px;
-    position: absolute;
-    right: 23.14px;
-    cursor: pointer;
-  } */
-
   & > #cart {
+    cursor: pointer;
     justify-content: center;
     gap: 10px;
     background: rgba(255, 126, 27, 1);
@@ -137,5 +112,9 @@ const ButtonContainer = styled.div`
     font-weight: 700;
     line-height: 19.84px;
     color: rgba(255, 255, 255, 1);
+
+    &:hover {
+      background-color: rgba(255, 171, 106, 1);
+    }
   }
 `;
