@@ -5,7 +5,8 @@ import { productContext } from "../../App";
 import Cart from "./Cart";
 
 export default function Header() {
-  const { burgerOpen, setBurgerOpen, count, cart } = useContext(productContext);
+  const { burgerOpen, setBurgerOpen, cart, width, categories } =
+    useContext(productContext);
   const [cartOpen, setCartOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -14,16 +15,22 @@ export default function Header() {
 
   const cartIconRef = useRef(null);
 
+  // width > 650 && setBurgerOpen(false);
+
   return (
     <HeaderComponent>
       <div className="logo-menu-div">
-        <img
-          onClick={handleMenuClick}
-          className="menu"
-          src="/images/icon-menu.svg"
-          alt="burger menu icon"
-        />
+        {width < 1052 && (
+          <img
+            onClick={handleMenuClick}
+            className="menu"
+            src="/images/icon-menu.svg"
+            alt="burger menu icon"
+          />
+        )}
+
         <img src="/images/logo.svg" alt="logo" />
+        {burgerOpen && <Burger />}
       </div>
 
       <div className="cart-user-div">
@@ -34,6 +41,7 @@ export default function Header() {
           src="/images/icon-cart.svg"
           alt="cart logo"
         />
+
         <span
           style={{
             position: "absolute",
@@ -55,7 +63,6 @@ export default function Header() {
         />
       </div>
 
-      {burgerOpen && <Burger />}
       {cartOpen && <Cart setCartOpen={setCartOpen} cartIconRef={cartIconRef} />}
     </HeaderComponent>
   );
@@ -68,10 +75,18 @@ const HeaderComponent = styled.header`
   padding: 19px 24px 25px;
   position: relative;
 
+  @media (min-width: 1052px) {
+    padding: 43px 165px;
+  }
+
   & > .logo-menu-div {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @media (min-width: 1052px) {
+      gap: 56px;
+    }
 
     & > .menu {
       cursor: pointer;

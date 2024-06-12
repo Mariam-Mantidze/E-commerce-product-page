@@ -5,6 +5,7 @@ import GlobalStyles from "./styles/Globalstyles.ts";
 import "./App.css";
 import styled from "styled-components";
 import Main from "./components/main/Main.tsx";
+import windowSize from "./styles/window-size/windowSize.ts";
 
 export const productContext = createContext({});
 
@@ -24,6 +25,8 @@ function App() {
   // total price
   const totalPrice = count * 125;
 
+  const { width } = windowSize();
+
   return (
     <productContext.Provider
       value={{
@@ -35,6 +38,7 @@ function App() {
         cart,
         setCart,
         totalPrice,
+        width,
       }}>
       <GlobalStyles />
       <Header />
@@ -56,4 +60,8 @@ const Overlay = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+
+  @media (min-width: 1052px) {
+    display: none;
+  }
 `;
