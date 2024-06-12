@@ -20,6 +20,7 @@ export default function Buttons() {
     if (count > 0 && Object.keys(cart).length === 0) {
       setCart({ price: totalPrice, count: count });
     }
+    setCount(0);
   };
 
   return (
@@ -41,10 +42,7 @@ export default function Buttons() {
       </button>
       <button
         style={{
-          background:
-            count <= 0 &&
-            Object.keys(cart).length === 0 &&
-            "rgba(255, 171, 106, 1)",
+          background: count <= 0 && "rgba(255, 171, 106, 1)",
         }}
         onClick={addToCart}
         id="cart">
