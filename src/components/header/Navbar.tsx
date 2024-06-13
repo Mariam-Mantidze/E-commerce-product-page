@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { productContext } from "../../App";
 import styled from "styled-components";
 
-export default function Burger() {
-  const { categories, setBurgerOpen, width } = useContext(productContext);
+export default function Navbar() {
+  const { categories, setNavbarOpen, width } = useContext(productContext);
 
   return (
-    <BurgerMenu>
+    <NavbarMenu>
       <img
-        onClick={() => setBurgerOpen(false)}
+        onClick={() => setNavbarOpen(false)}
         src="images/icon-close.svg"
         alt="close icon"
       />
@@ -18,11 +18,11 @@ export default function Burger() {
           <li key={index}>{category}</li>
         ))}
       </ul>
-    </BurgerMenu>
+    </NavbarMenu>
   );
 }
 
-const BurgerMenu = styled.div`
+const NavbarMenu = styled.nav`
   left: 0;
   position: absolute;
   height: 100vh;

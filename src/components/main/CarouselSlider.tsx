@@ -1,21 +1,35 @@
 import styled from "styled-components";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
+import { useContext } from "react";
+import { productContext } from "../../App";
+import DesktopImages from "./DesktopImages";
 
 export default function CarouselSlider() {
-  const slides = [1, 2, 3, 4];
+  const mainImgSlide = [
+    "images/image-product-0.jpg",
+    "images/image-product-1.jpg",
+    "images/image-product-2.jpg",
+    "images/image-product-3.jpg",
+  ];
+
+  const { width } = useContext(productContext);
   return (
     <ImageContainer>
-      <Slider>
-        {slides.map((imageIndex, index) => (
-          <img
-            key={index}
-            className="main-img"
-            src={`images/image-product-${imageIndex}.jpg`}
-            alt="product image"
-          />
-        ))}
-      </Slider>
+      {width < 1052 ? (
+        <Slider>
+          {mainImgSlide.map((img, index) => (
+            <img
+              key={index}
+              className="main-img"
+              src={img}
+              alt="product image"
+            />
+          ))}
+        </Slider>
+      ) : (
+        <DesktopImages />
+      )}
 
       <div className="arrow-circle circle-right custom-prev-arrow">
         <img
@@ -46,6 +60,10 @@ const ImageContainer = styled.div`
 
   & .slider {
     height: 300px;
+
+    @media (min-width: 1052px) {
+      display: none;
+    }
   }
 
   .slider a.previousButton,
@@ -79,6 +97,10 @@ const ImageContainer = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    @media (min-width: 1052px) {
+      display: none;
+    }
   }
 
   & .circle-left {

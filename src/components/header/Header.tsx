@@ -1,21 +1,21 @@
 import styled from "styled-components";
-import Burger from "./Burger";
+import Navbar from "./Navbar";
 import { useContext, useState, useRef } from "react";
 import { productContext } from "../../App";
 import Cart from "./Cart";
 
 export default function Header() {
-  const { burgerOpen, setBurgerOpen, cart, width, categories } =
+  const { setNavbarOpen, navbarOpen, cart, width, categories } =
     useContext(productContext);
   const [cartOpen, setCartOpen] = useState(false);
 
   const handleMenuClick = () => {
-    setBurgerOpen(true), setCartOpen(false);
+    setNavbarOpen(true), setCartOpen(false);
   };
 
   const cartIconRef = useRef(null);
 
-  // width > 650 && setBurgerOpen(false);
+  width > 1052 && setNavbarOpen(true);
 
   return (
     <HeaderComponent>
@@ -30,7 +30,7 @@ export default function Header() {
         )}
 
         <img src="/images/logo.svg" alt="logo" />
-        {burgerOpen && <Burger />}
+        {navbarOpen && <Navbar />}
       </div>
 
       <div className="cart-user-div">

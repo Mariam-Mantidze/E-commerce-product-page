@@ -10,8 +10,8 @@ import windowSize from "./styles/window-size/windowSize.ts";
 export const productContext = createContext({});
 
 function App() {
-  // state for managing burger menu pop
-  const [burgerOpen, setBurgerOpen] = useState(false);
+  // state for managing navbar
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   // category array for mapping
   const categories = ["Collections", "Men", "Women", "About", "Contact"];
@@ -31,8 +31,8 @@ function App() {
     <productContext.Provider
       value={{
         categories,
-        burgerOpen,
-        setBurgerOpen,
+        navbarOpen,
+        setNavbarOpen,
         count,
         setCount,
         cart,
@@ -42,7 +42,7 @@ function App() {
       }}>
       <GlobalStyles />
       <Header />
-      {burgerOpen && <Overlay />}
+      {navbarOpen && <Overlay />}
       <Main />
     </productContext.Provider>
   );
